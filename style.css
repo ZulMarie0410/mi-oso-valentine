@@ -1,0 +1,493 @@
+
+/* GLOBAL */
+body {
+  margin: 0;
+  background: #ffe7e7;
+  text-align: center;
+}
+
+.home-screen,
+.level {
+  pointer-events: auto;
+}
+
+/* HEART BORDER */
+.heart-border {
+  height: 80px;
+  background-image: url("hearts.png");
+  background-repeat: repeat-x;
+  background-size: contain;
+}
+
+/* HOME SCREEN */
+.home-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;   /* controls distance from heart border */
+  gap: 14px;           /* space BETWEEN elements */
+}
+
+
+/* PIXEL TITLE */
+.pixel-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 26px;
+  margin: 0px;
+  margin-top: -10px;
+}
+
+/* SUBTITLE */
+.subtitle {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  margin: 4px 0 12px 0;
+  margin-top: 5px;
+}
+
+/* HEART NAV BUTTONS */
+.nav-hearts {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 50px;
+}
+
+/* HEART SHAPE */
+.heart-btn {
+  width: 120px;
+  height: 120px;
+  background: #d79b7f;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transform: rotate(-45deg);
+  margin: 10px;
+}
+
+.heart-btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  z-index: 2; /* 👈 higher than pseudo-elements */
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  text-align: center;
+  line-height: 1.3;
+  pointer-events: none;
+  margin: 2px;
+}
+
+.heart-btn::before,
+.heart-btn::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: #d79b7f;
+  border-radius: 50%;
+  z-index: 0; /* 👈 explicitly behind */
+}
+
+.heart-btn::before {
+  top: -60px;
+  left: 0;
+}
+
+.heart-btn::after {
+  left: 60px;
+  top: 0;
+}
+
+.heart-btn:hover {
+  transform: rotate(-45deg) scale(1.05);
+}
+
+/* BEAR */
+.bear {
+  position: fixed;
+  right: -3vw;
+  bottom: -3vh;
+  width: clamp(350px, 18vw, 500px);
+  pointer-events: auto;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.level {
+  display: none;
+}
+
+.build-zone {
+  width: 350px;
+  height: 400px;
+  border: 2px dashed #333;
+  margin: 20px auto 20px auto;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding: 12px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.brick {
+  width: 300px;
+  height: 40px;
+  background: #ff6f91;
+  margin: 4px 0;
+  border-radius: 6px;
+  box-shadow: inset 0 -3px rgba(0,0,0,0.2);
+}
+
+.soft-btn {
+  background: #d79b7f;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 22px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  cursor: pointer;
+  margin-top: 0px;
+}
+
+.build-message {
+  margin-top: 14px;
+  font-size: 30px;
+  font-weight: bold;
+  max-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+
+#build .pixel-title {
+  margin-top: 70px;
+}
+
+.brick {
+  animation: pop 0.2s ease-out;
+  z-index: 1;
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.us-pic {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 334px;
+  height: 384px;
+  object-fit: cover;
+  border-radius: 18px;
+  display: none;
+  z-index: 3;
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pixel-subtitle {
+  font-size: 25px;
+  margin: 20px 0 20px;
+}
+
+.pixel-hearts {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  margin: 100px 0;
+}
+
+.choice-heart {
+  --heart-color: #e63946; /*deafult red*/
+
+  width: 60px;
+  height: 60px;
+  background: var(--heart-color);
+  position: relative;
+  transform: rotate(-45deg);
+  border: none;
+  cursor: pointer;
+}
+
+.choice-heart::before,
+.choice-heart::after {
+  content: "";
+  width: 60px;
+  height: 60px;
+  background: var(--heart-color);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.choice-heart::before {
+  top: -30px;
+  left: 0;
+}
+
+.choice-heart::after {
+  left: 30px;
+  top: 0;
+}
+
+.choice-heart:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.choice-heart.correct {
+  --heart-color: #ff6f91; /* pink */
+}
+
+.choice-heart.wrong {
+  --heart-color: #666; /* gray */
+}
+
+.choice-heart.wrong {
+  animation: shake 0.3s;
+}
+
+.choice-heart:hover {
+  transform: scale(1.1);
+}
+
+@keyframes shake {
+  0% { transform: rotate(-45deg) translateX(0); }
+  25% { transform: rotate(-45deg) translateX(-4px); }
+  50% { transform: rotate(-45deg) translateX(4px); }
+  75% { transform: rotate(-45deg) translateX(-4px); }
+  100% { transform: rotate(-45deg) translateX(0); }
+}
+
+.pixel-result {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#pixel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.hint-btn {
+  background: none;
+  border: 2px dashed #333;
+  padding: 6px 14px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.star-row {
+  display: flex;
+  justify-content: center;
+  gap: 26px;          /* spacing between stars */
+  margin: 50px 0;
+}
+
+.choice-star {
+  width: 200px;
+  height: 200px;
+  background: gold;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  transition: transform 0.15s ease;
+}
+
+.choice-star.correct {
+  background: #ffd166;
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.choice-star.wrong {
+  background: #aaa;
+  opacity: 0.6;
+  animation: starShake 0.3s;
+}
+
+@keyframes starShake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-4px); }
+  50%  { transform: translateX(4px); }
+  75%  { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+.choice-star:hover {
+  transform: scale(1.1);
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.hint-btn {
+  background: none;
+  border: 2px dashed #333;
+  padding: 6px 14px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.pixel-hint {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.infinity {
+  font-size: 80px;
+  margin-top: 20px;
+  display: none;
+  animation: popIn 0.6s ease-out;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.infinity {
+  font-size: 64px;
+  margin-top: 20px;
+  display: none;
+  animation: popIn 0.6s ease-out, sparkle 1.2s infinite;
+}
+
+@keyframes sparkle {
+  0% { text-shadow: 0 0 4px gold; }
+  50% { text-shadow: 0 0 12px gold; }
+  100% { text-shadow: 0 0 4px gold; }
+}
+
+#valentine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* 👈 horizontal centering */
+  justify-content: center;   /* 👈 vertical centering */
+  min-height: 100vh;
+  text-align: center;
+  margin-top: 150px;
+}
+
+#valentine * {
+  align-self: center;
+}
+
+.love-letter {
+  font-family: 'Dancing Script', cursive;
+  font-size: 30px;
+  line-height: 1.5;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-width: 420px;
+}
+
+.love-letter {
+  animation: writeIn 0.8s ease-in;
+}
+
+@keyframes writeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.soft-emphasis {
+  font-size: 20px;
+  margin: 12px 0;
+  text-align: center;
+}
+
+#valentine .soft-emphasis {
+  opacity: 0.85;
+}
+
+.heart {
+  position: fixed;
+  bottom: 0;
+  font-size: 24px;
+  animation: floatUp 3s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+

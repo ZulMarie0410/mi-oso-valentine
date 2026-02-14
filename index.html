@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Build Our Love 📐❤️</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEART BORDER -->
+<div class="heart-border"></div>
+
+<!-- HOME SCREEN -->
+<div id="home" class="home-screen">
+  <h1 class="pixel-title">Welcome, Mi Oso</h1>
+  <p class="subtitle">Your Mission: Build Our Love</p>
+
+  <div class="nav-hearts">
+    <button class="heart-btn" onclick="showLevel('build')"><span>Build<br>Our Love</span></button>
+    <button class="heart-btn" onclick="showLevel('pixel')"><span>Pixel Love<br>Quest</span></button>
+    <button class="heart-btn" onclick="showLevel('review')"><span>Architect<br>Review</span></button>
+    <button class="heart-btn" onclick="showLevel('valentine')"><span>Valentine</span></button>
+  </div>
+
+</div>
+
+  <!-- LEVEL 1 -->
+ <div id="build" class="level">
+  <h2 class="pixel-title small home-link" onclick="goHome()">Build Our Love 🧱</h2>
+
+  <div class="build-zone" id="building">
+    <img src="us.jpg" id="usPic" class="us-pic">
+  </div>
+
+  <button class="soft-btn" onclick="addBrick()">＋ Add a Brick</button>
+
+  <p id="message" class="build-message"></p>
+</div>
+
+  <!-- LEVEL 2 -->
+  <div id="pixel" class="level">
+  <h2 class="pixel-title small home-link" onclick="goHome()">
+    Pixel Love Quest 💖
+  </h2>
+
+  <p class="pixel-subtitle">Choose 2 Hearts to Win</p>
+
+ <div class="pixel-hearts">
+  <button class="choice-heart" data-correct="true" onclick="pickHeart(this)"></button>
+  <button class="choice-heart" data-correct="false" onclick="pickHeart(this)"></button>
+  <button class="choice-heart" data-correct="false" onclick="pickHeart(this)"></button>
+  <button class="choice-heart" data-correct="false" onclick="pickHeart(this)"></button>
+  <button class="choice-heart" data-correct="true" onclick="pickHeart(this)"></button>
+</div>
+
+<p id="chancesText" class="soft-emphasis">You have 3 chances</p>
+  <button class="hint-btn" onclick="toggleHint()">Need a hint?</button>
+<p id="pixelHint" class="pixel-hint" style="display: none;">
+  Our anniversary date in Binary
+</p>
+
+  <p id="pixelResult" class="pixel-result"></p>
+</div>
+
+  <!-- LEVEL 3 -->
+<div id="review" class="level">
+  <h2 class="pixel-title small home-link" onclick="goHome()">
+    Architect Review 💖
+  </h2>
+
+  <p class="pixel-subtitle">Choose the right 2 stars</p>
+
+  <div class="star-row">
+    <button class="choice-star" data-correct="true" onclick="pickStar(this)"></button>
+    <button class="choice-star" data-correct="false" onclick="pickStar(this)"></button>
+    <button class="choice-star" data-correct="true" onclick="pickStar(this)"></button>
+    <button class="choice-star" data-correct="false" onclick="pickStar(this)"></button>
+    <button class="choice-star" data-correct="false" onclick="pickStar(this)"></button>
+  </div>
+
+  <p id="reviewChances" class="soft-emphasis">You have 3 chances</p>
+  <p id="reviewLoveMessage" class="soft-emphasis" style="display:none;">
+  I still love you 💖
+</p>
+
+  <button class="hint-btn" onclick="toggleReviewHint()">Need a hint?</button>
+<p id="reviewHint" class="pixel-hint" style="display:none;">
+  5 stars in binary because our relationship is 5 stars amazing → 101 💖.
+</p>
+
+  <p id="starResult" class="pixel-result"></p>
+  <div id="infinity" class="infinity">♾️</div>
+</div>
+
+
+<div id="valentine" class="level">
+  <h2 class="pixel-title small home-link" onclick="goHome()">Valentine Reveal 💖</h2>
+
+<p class="soft-emphasis">One last thing…</p>
+
+  <button class="soft-btn" onclick="reveal()">Open My Heart 💘</button>
+
+  <p id="finalMessage" class="love-letter"></p>
+</div>
+
+
+<img src="bear.png" class="bear" onclick="playClick(); resetAll()" title="Start over 🐻">
+
+  <script src="script.js"></script>
+  <audio id="clickSound" src="click.mp3"></audio>
+  <audio id="winSound" src="win.mp3" preload="none"></audio>
+
+</body>
+</html>
