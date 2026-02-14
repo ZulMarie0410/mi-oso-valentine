@@ -490,4 +490,27 @@ body {
   }
 }
 
+/* Force text color on mobile browsers */
+a,
+a:visited,
+a:hover,
+a:active {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Prevent mobile tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure pixel titles never turn blue */
+.pixel-title,
+.subtitle,
+.home-link,
+.soft-emphasis,
+.pixel-result,
+.pixel-hint {
+  color: #000;
+}
 
